@@ -12,6 +12,7 @@ public class Scanner {
     static {
         keywords = new HashMap<>();
         keywords.put("let",    TokenType.LET);
+        keywords.put("print",    TokenType.PRINT);
     }
 
     public Scanner (byte[] input) {
@@ -55,14 +56,6 @@ public class Scanner {
         if (type == null) type = TokenType.IDENT;
         return new Token(type, id);
     }
-
-//    private Token identifier() {
-//        int start = current;
-//        while (isAlphaNumeric(peek())) advance();
-//
-//        String id = new String(input, start, current-start);
-//        return new Token(TokenType.IDENT, id);
-//    }
 
     // método que encapsula o avanço dos tokens e verifica se está no final do arquivo
     public void advance()  {
