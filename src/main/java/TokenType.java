@@ -4,10 +4,12 @@ public enum TokenType {
     MINUS,
     MULTIPLY,
     DIVIDE,
+    EQ, SEMICOLON,
 
     // Literals.
     NUMBER,
     IDENT,
+    LET,
 
     EOF
 }

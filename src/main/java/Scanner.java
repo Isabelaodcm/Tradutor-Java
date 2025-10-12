@@ -1,10 +1,18 @@
 // vai tratar os caracteres de entrada
-
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Scanner {
     private byte[] input;
     private int current;
+
+    private static final Map<String, TokenType> keywords;
+
+    static {
+        keywords = new HashMap<>();
+        keywords.put("let",    TokenType.LET);
+    }
 
     public Scanner (byte[] input) {
         this.input = input;
@@ -42,9 +50,19 @@ public class Scanner {
         int start = current;
         while (isAlphaNumeric(peek())) advance();
 
-        String id = new String(input, start, current-start);
-        return new Token(TokenType.IDENT, id);
+        String id = new String(input, start, current-start)  ;
+        TokenType type = keywords.get(id);
+        if (type == null) type = TokenType.IDENT;
+        return new Token(type, id);
     }
+
+//    private Token identifier() {
+//        int start = current;
+//        while (isAlphaNumeric(peek())) advance();
+//
+//        String id = new String(input, start, current-start);
+//        return new Token(TokenType.IDENT, id);
+//    }
 
     // método que encapsula o avanço dos tokens e verifica se está no final do arquivo
     public void advance()  {
@@ -95,6 +113,14 @@ public class Scanner {
             case '/':
                 advance();
                 return new Token(TokenType.DIVIDE, "/");
+
+            case '=':
+                advance();
+                return new Token (TokenType.EQ,"=");
+
+            case ';':
+                advance();
+                return new Token (TokenType.SEMICOLON,";");
 
             case '\0':
                 return new Token (TokenType.EOF,"EOF");
