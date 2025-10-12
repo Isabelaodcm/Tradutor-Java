@@ -56,6 +56,14 @@ public class Scanner {
                 advance();
                 return new Token (TokenType.MINUS,"-");
 
+            case '*':
+                advance();
+                return new Token(TokenType.MULTIPLY, "*");
+
+            case '/':
+                advance();
+                return new Token(TokenType.DIVIDE, "/");
+
             case '\0':
                 return new Token (TokenType.EOF,"EOF");
 
