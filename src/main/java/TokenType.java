@@ -1,4 +1,9 @@
-package PACKAGE_NAME;
 
-public class TokenType {
+public enum TokenType {
+    PLUS,MINUS,MULTIPLY,DIVIDE,
+
+    // Literals.
+    NUMBER,
+
+    EOF
 }

@@ -1,20 +1,20 @@
-//public class Parser_java {
+//public class Parser{
 ////    private byte[] input;
 ////    private int current; // indica qual byte atual que está sendo lido
 //
 //    private Scanner scan;
-//    private char currentToken;
+//    private Token currentToken;
 //
-////    public Parser_java(byte[] input){
-////        scan = new Scanner(input);
-////        currentToken = scan.nextToken();
-////
-////    }
+//    public Parser(byte[] input){
+//        scan = new Scanner(input);
+//        currentToken = scan.nextToken();
+//
+//    }
 //
 ////    // método para atualizar o token
-////    private void nextToken () {
-////        currentToken = scan.nextToken();
-////    }
+//    private void nextToken () {
+//        currentToken = scan.nextToken();
+//    }
 //
 //    public void parse(){
 //        expr();

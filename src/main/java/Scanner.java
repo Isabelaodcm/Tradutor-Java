@@ -18,15 +18,16 @@ public class Scanner {
         return '\0';
     }
 
-
-    private String number() {
+    // função para concatenar a sequencia de caracteres de entrada e verificar
+//    o tipo do token
+    private Token number() {
         int start = current ;
         while (Character.isDigit(peek())) {
             advance();
         }
 
         String n = new String(input, start, current-start)  ;
-        return n;
+        return new Token(TokenType.NUMBER, n);
     }
 
     // método que encapsula o avanço dos tokens e verifica se está no final do arquivo
@@ -37,42 +38,29 @@ public class Scanner {
         }
     }
 
-    public String nextToken () {
+    public Token nextToken () {
         char ch = peek();
         if(ch == '0'){
             advance();
-            return Character.toString(ch);
+            return new Token (TokenType.NUMBER, Character.toString(ch));
         } else if (Character.isDigit(ch)){
             return number();
         }
 
+        // ajustar para multiplicacao e divisao tbm
         switch (ch){
             case '+':
+                advance();
+                return new Token (TokenType.PLUS,"+");
             case '-':
                 advance();
-                return Character.toString(ch);
+                return new Token (TokenType.MINUS,"-");
+
+            case '\0':
+                return new Token (TokenType.EOF,"EOF");
 
             default:
-                break;
+                throw new Error("lexical error at " + ch);
         }
-
-        throw new Error("lexical error");
-//
-//        if (Character.isDigit(ch)) {
-//            advance();
-//            return ch;
-//        }
-//
-//        // ajustar para multiplicacao e divisao tbm
-//        switch (ch) {
-//            case '+':
-//            case '-':
-//                advance();
-//                return ch;
-//            default:
-//                break;
-//        }
-//
-//        return '\0';
     }
 }
