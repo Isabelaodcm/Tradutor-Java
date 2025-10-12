@@ -18,6 +18,14 @@ public class Scanner {
         return '\0';
     }
 
+    // método para remover caracteres em branco
+    private void skipWhitespace() {
+        char ch = peek();
+        while (ch == ' ' || ch == '\r' || ch == '\t' || ch == '\n') {
+            advance();
+            ch = peek();
+        }
+    }
     // função para concatenar a sequencia de caracteres de entrada e verificar
 //    o tipo do token
     private Token number() {
@@ -39,6 +47,7 @@ public class Scanner {
     }
 
     public Token nextToken () {
+        skipWhitespace();
         char ch = peek();
         if(ch == '0'){
             advance();
